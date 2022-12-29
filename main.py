@@ -4,7 +4,7 @@ import os
 # definition of colour escape sequences
 GREEN_LETTER = "\033[1;42m "
 YELLOW_LETTER = "\033[1;43m "
-GREY_LETTER = "\033[1;37;40m "
+GREY_LETTER = "\033[1;49m "
 STOP = "\033[0m"
 
 MAX_GUESSES = 6
