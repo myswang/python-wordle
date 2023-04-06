@@ -9,12 +9,12 @@ STOP = "\033[0m"
 MAX_GUESSES = 6
 
 
-def append_to_dict(dick, letter):
-    if letter in dick:
-        dick[letter] += 1
+def append_to_dict(d, letter):
+    if letter in d:
+        d[letter] += 1
     else:
-        dick[letter] = 1
-    return dick
+        d[letter] = 1
+    return d
 
 
 def invalid_input(word):
