@@ -1,5 +1,4 @@
 from random import randint
-import os
 
 # definition of colour escape sequences
 GREEN_LETTER = "\033[1;42m "
@@ -57,8 +56,6 @@ def evaluate(word):
 
 
 if __name__ == '__main__':
-
-    os.system("")
 
     with open('sgb-words.txt') as f:
         words = [word.rstrip('\n') for word in f]
