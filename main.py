@@ -65,7 +65,7 @@ if __name__ == '__main__':
     num_guesses = 1
 
     while True:
-        guess = input(str(num_guesses) + ") Guess the word: ").upper()
+        guess = input("(" + str(num_guesses) + "/6) Guess: ").upper()
         if invalid_input(guess):
             print("Word not in list. Try again")
             continue
