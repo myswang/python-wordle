@@ -8,15 +8,6 @@ STOP = "\033[0m"
 
 MAX_GUESSES = 6
 
-
-def append_to_dict(d, letter):
-    if letter in d:
-        d[letter] += 1
-    else:
-        d[letter] = 1
-    return d
-
-
 def invalid_input(word):
     if word.isalpha():
         return False if len(word) == 5 and word.lower() in words else True
@@ -31,15 +22,17 @@ def evaluate(word):
         letter = word[i]
         if letter == answer[i]:
             score[i] = GREEN_LETTER + letter
-            duplicates = append_to_dict(duplicates, letter)
+            duplicates.setdefault(letter, 0)
+            duplicates[letter] += 1
         else:
             score[i] = ""
 
     for i in range(5):
         letter = word[i]
-        if score[i] == GREEN_LETTER + letter:
+        if GREEN_LETTER in score[i]:
             continue
-        duplicates = append_to_dict(duplicates, letter)
+        duplicates.setdefault(letter, 0)
+        duplicates[letter] += 1
         if letter in answer and duplicates[letter] <= answer.count(letter):
             score[i] = YELLOW_LETTER + letter
         else:
@@ -57,15 +50,17 @@ def evaluate(word):
 
 if __name__ == '__main__':
 
-    with open('sgb-words.txt') as f:
-        words = [word.rstrip('\n') for word in f]
+    with open("sgb-words.txt", "r") as f:
+        words = f.read().splitlines()
+        answer_idx = randint(0, len(words) - 1)
+        answer = words[answer_idx].upper()
+        words = set(words)
 
-    answer = words[randint(0, len(words) - 1)].upper()
     guess = ""
     num_guesses = 1
 
     while True:
-        guess = input("(" + str(num_guesses) + "/6) Guess: ").upper()
+        guess = input(f"({num_guesses}/6) Guess: ").upper()
         if invalid_input(guess):
             print("Word not in list. Try again")
             continue
@@ -75,5 +70,5 @@ if __name__ == '__main__':
                 break
             if num_guesses > MAX_GUESSES:
                 print("Out of tries, game over!")
-                print("The word was " + answer)
+                print(f"The word was {answer}")
                 break
