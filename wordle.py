@@ -62,4 +62,6 @@ if __name__ == '__main__':
                 break
         else:
             print("Word not in list. Try again")
+    for s in history:
+        print(s)
 
