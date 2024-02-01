@@ -30,8 +30,7 @@ def evaluate(word):
         else:
             score[i] = f"{GREY_LETTER} {letter} "
     
-    score.append(STOP)
-    print("".join(score))
+    history.append("".join(score) + STOP)
 
     if word == answer:
         print("Congrats, you guessed correctly!")
@@ -46,10 +45,12 @@ if __name__ == '__main__':
         answer = words[randint(0, len(words)-1)].upper()
         words = set(words)
 
-    guess = ""
     num_guesses = 1
+    history = []
 
     while True:
+        for s in history:
+            print(s)
         guess = input(f"({num_guesses}/6) Guess: ")
         if guess.isalpha() and guess.lower() in words:
             num_guesses += 1
