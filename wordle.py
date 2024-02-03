@@ -1,6 +1,5 @@
 from random import randint
 import os
-import time
 
 # definition of colour escape sequences
 GREEN_LETTER = "\033[1;42m"
