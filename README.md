@@ -2,7 +2,7 @@
 
 A simple CLI Wordle clone made in Python.
 
-# Quick Start
+## Quick Start
 
 First, clone/download this repository and `cd` into it.
 
@@ -21,3 +21,6 @@ Words are stored in `sgb-words.txt`. You can add/remove additional words here, s
 
 Have fun!
 
+## Credits
+
+The word dataset was obtained from the award-winning book [*The Stanford GraphBase: A Platform for Combinatorial Computing*](https://www-cs-faculty.stanford.edu/~knuth/sgb.html) by Donald E. Knuth. You can download the dataset [here](https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt).
