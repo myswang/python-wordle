@@ -67,8 +67,8 @@ if __name__ == '__main__':
     while num_guesses <= MAX_GUESSES:
         clear_screen()
         info_str = f"Guess {num_guesses}/{MAX_GUESSES}"
-        # if not valid_input:
-        #     info_str += " Invalid input."
+        if not valid_input:
+            info_str += " Invalid input."
         print(info_str)
         print_history()
         guess = input(f"Input: ")
@@ -81,10 +81,7 @@ if __name__ == '__main__':
             num_guesses += 1
         else:
             valid_input = False
-            clear_screen()
-            print("Invalid input.")
-            print_history()
-            time.sleep(1)
+
     clear_screen()
     if num_guesses > MAX_GUESSES:
         print(f"Game over! The answer was: {answer}")
