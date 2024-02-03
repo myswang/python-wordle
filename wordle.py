@@ -1,4 +1,5 @@
 from random import randint
+import os
 
 # definition of colour escape sequences
 GREEN_LETTER = "\033[1;42m"
@@ -33,10 +34,17 @@ def evaluate(word):
     history.append("".join(score) + STOP)
 
     if word == answer:
-        print("Congrats, you guessed correctly!")
         return True
     return False
 
+def clear_screen():
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("python-wordle by Mike Wang")
+        print("==========================")
+
+def print_history():
+    for s in history:
+        print(s)
 
 if __name__ == '__main__':
 
@@ -47,21 +55,26 @@ if __name__ == '__main__':
 
     num_guesses = 1
     history = []
-
-    while True:
-        for s in history:
-            print(s)
-        guess = input(f"({num_guesses}/6) Guess: ")
+    valid_input = True
+    while num_guesses <= MAX_GUESSES:
+        clear_screen()
+        info_str = f"Guess {num_guesses}/{MAX_GUESSES}"
+        if not valid_input:
+            info_str += " Invalid input."
+        print(info_str)
+        print_history()
+        guess = input(f"Input: ")
         if guess.isalpha() and guess.lower() in words:
-            num_guesses += 1
+            valid_input = True
             if evaluate(guess.upper()):
                 break
-            if num_guesses > MAX_GUESSES:
-                print("Out of tries, game over!")
-                print(f"The word was {answer}")
-                break
+            num_guesses += 1
         else:
-            print("Word not in list. Try again")
-    for s in history:
-        print(s)
+            valid_input = False
+    clear_screen()
+    if num_guesses > MAX_GUESSES:
+        print(f"Game over! The answer was: {answer}")
+    else:
+        print(f"Congrats! You guessed it in {num_guesses} tries.")
+    print_history()
 
