@@ -72,7 +72,7 @@ if __name__ == '__main__':
         print_history()
         guess = input(f"Input: ")
         # check if word is valid
-        if guess.isalpha() and guess.lower() in words:
+        if guess.lower() in words:
             valid_input = True
             # evaluate the guess (green/yellow/grey)
             if evaluate(guess.upper()):
