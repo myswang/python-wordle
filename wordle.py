@@ -53,7 +53,7 @@ def print_history():
 
 if __name__ == '__main__':
     # read word dataset into a set and pick a random answer
-    with open("sgb-words.txt", "r") as f:
+    with open("sgb-words-singular.txt", "r") as f:
         words = f.read().splitlines()
         answer = words[randint(0, len(words)-1)].upper()
         # use a set for O(1) lookup
@@ -70,7 +70,7 @@ if __name__ == '__main__':
             info_str += " Invalid input."
         print(info_str)
         print_history()
-        guess = input(f"Input: ")
+        guess = input("Input: ")
         # check if word is valid
         if guess.lower() in words:
             valid_input = True
