@@ -1,5 +1,5 @@
-import random
 import os
+import random
 
 # definition of colour escape sequences
 GREEN_LETTER = "\033[1;42m"
@@ -55,21 +55,16 @@ if __name__ == '__main__':
         
     num_guesses = 1
     history = ""
-    valid_input = True
     # loop until we run out of guesses
     while num_guesses <= MAX_GUESSES:
         clear_screen()
         info_str = f"Guess {num_guesses}/{MAX_GUESSES}"
-        if not valid_input:
-            info_str += " - Invalid input."
         print(info_str)
         print(history, end="\r")
         guess = input("Input: ").upper()
         # check if word is valid
         if guess not in words:
-            valid_input = False
             continue
-        valid_input = True
         # evaluate the guess (green/yellow/grey)
         history += evaluate(guess, answer) + "\n"
         if guess == answer:
