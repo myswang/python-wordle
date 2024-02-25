@@ -37,7 +37,7 @@ def evaluate(word, answer):
 
 # clear the screen to begin drawing a new frame
 def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear && printf \'\e[3J\'')
     print("python-wordle by Mike Wang")
     print("==========================")
 
