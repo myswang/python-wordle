@@ -1,5 +1,7 @@
 # python-wordle
 
+![example game](wordle-example.png)
+
 *Wordle for your terminal.*
 
 ## Quick Start
