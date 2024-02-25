@@ -11,7 +11,7 @@ MAX_GUESSES = 6
 
 # evaluates the "correctness" of word against the answer.
 # returns the coloured matches of the word (green/yellow/grey)
-def evaluate(word):
+def evaluate(word, answer):
     duplicates = {}
     score = [""] * len(word)
     # find exact matches (green)
@@ -44,12 +44,12 @@ def clear_screen():
 # read words file into a set
 def read_words_file(fname):
     with open(fname, "r") as f:
-        return set(f.read().splitlines())
+        return set([word.upper() for word in f.read().splitlines()])
 
 if __name__ == '__main__':
     # read word dataset (singular only) into a set and pick a random answer
     words_singular = read_words_file("sgb-words-singular.txt")
-    answer = random.choice(tuple(words_singular)).upper()
+    answer = random.choice(tuple(words_singular))
     # read (full) word dataset for guesses
     words = read_words_file("sgb-words.txt")
         
@@ -64,17 +64,17 @@ if __name__ == '__main__':
             info_str += " Invalid input."
         print(info_str)
         print(history, end="\r")
-        guess = input("Input: ")
+        guess = input("Input: ").upper()
         # check if word is valid
-        if guess.lower() in words:
-            valid_input = True
-            # evaluate the guess (green/yellow/grey)
-            history += evaluate(guess.upper()) + "\n"
-            if guess.upper() == answer.upper():
-                break
-            num_guesses += 1
-        else:
+        if guess not in words:
             valid_input = False
+            continue
+        valid_input = True
+        # evaluate the guess (green/yellow/grey)
+        history += evaluate(guess, answer) + "\n"
+        if guess == answer:
+            break
+        num_guesses += 1
 
     clear_screen()
     if num_guesses > MAX_GUESSES:
