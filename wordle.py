@@ -61,7 +61,7 @@ if __name__ == '__main__':
         clear_screen()
         info_str = f"Guess {num_guesses}/{MAX_GUESSES}"
         if not valid_input:
-            info_str += " Invalid input."
+            info_str += " - Invalid input."
         print(info_str)
         print(history, end="\r")
         guess = input("Input: ").upper()
