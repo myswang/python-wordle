@@ -1,4 +1,4 @@
-from random import randint
+import random
 import os
 
 # definition of colour escape sequences
@@ -52,13 +52,14 @@ def print_history():
         print(s)
 
 if __name__ == '__main__':
-    # read word dataset into a set and pick a random answer
+    # read word dataset (singular only) into a set and pick a random answer
     with open("sgb-words-singular.txt", "r") as f:
-        words = f.read().splitlines()
-        answer = words[randint(0, len(words)-1)].upper()
-        # use a set for O(1) lookup
-        words = set(words)
-
+        words_singular = set(f.read().splitlines())
+        answer = random.choice(tuple(words_singular)).upper()
+    # read (full) word dataset for guesses
+    with open("sgb-words.txt", "r") as f:
+        words = set(f.read().splitlines())
+        
     num_guesses = 1
     history = []
     valid_input = True
