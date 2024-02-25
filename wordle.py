@@ -63,13 +63,13 @@ if __name__ == '__main__':
         if not valid_input:
             info_str += " Invalid input."
         print(info_str)
-        print(history)
+        print(history, end="\r")
         guess = input("Input: ")
         # check if word is valid
         if guess.lower() in words:
             valid_input = True
             # evaluate the guess (green/yellow/grey)
-            history += evaluate(guess.upper())
+            history += evaluate(guess.upper()) + "\n"
             if guess.upper() == answer.upper():
                 break
             num_guesses += 1
@@ -81,5 +81,5 @@ if __name__ == '__main__':
         print(f"Game over! The answer was: {answer}")
     else:
         print(f"Congrats! You guessed it in {num_guesses} tries.")
-    print(history)
+    print(history, end="\r")
 
