@@ -14,7 +14,7 @@ Run the python script:
 python wordle.py
 ```
 
-**Note**: Your terminal must support ANSI color escape sequences in order for the letters to be rendered correctly.
+**Note**: Your terminal must support [ANSI color escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) in order for the letters to be rendered correctly.
 
 Have fun!
 
