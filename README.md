@@ -4,7 +4,7 @@
 
 ## Quick Start
 
-Clone/download the repository. For example, in Linux/MacOS:
+Clone/download the repository. For example, in Linux/macOS:
 ```
 git clone https://github.com/myswang/python-wordle.git
 cd python-wordle
