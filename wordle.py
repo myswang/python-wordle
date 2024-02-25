@@ -51,14 +51,17 @@ def print_history():
     for s in history:
         print(s)
 
+# read words file into a set
+def read_words_file(fname):
+    with open(fname, "r") as f:
+        return set(f.read().splitlines())
+
 if __name__ == '__main__':
     # read word dataset (singular only) into a set and pick a random answer
-    with open("sgb-words-singular.txt", "r") as f:
-        words_singular = set(f.read().splitlines())
-        answer = random.choice(tuple(words_singular)).upper()
+    words_singular = read_words_file("sgb-words-singular.txt")
+    answer = random.choice(tuple(words_singular)).upper()
     # read (full) word dataset for guesses
-    with open("sgb-words.txt", "r") as f:
-        words = set(f.read().splitlines())
+    words = read_words_file("sgb-words.txt")
         
     num_guesses = 1
     history = []
