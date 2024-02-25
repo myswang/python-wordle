@@ -13,18 +13,16 @@ MAX_GUESSES = 6
 # returns True if they exactly match
 def evaluate(word):
     duplicates = {}
-    score = [""] * 5
+    score = [""] * len(word)
     # find exact matches (green)
-    for i in range(5):
-        letter = word[i]
+    for i, letter in enumerate(word):
         if letter == answer[i]:
             score[i] = f"{GREEN_LETTER} {letter} "
             duplicates.setdefault(letter, 0)
             duplicates[letter] += 1
 
     # find partial matches (yellow)
-    for i in range(5):
-        letter = word[i]
+    for i, letter in enumerate(word):
         if GREEN_LETTER in score[i]: # skip exact matches
             continue
         duplicates.setdefault(letter, 0)
@@ -48,8 +46,7 @@ def clear_screen():
 
 # print all guesses made
 def print_history():
-    for s in history:
-        print(s)
+    print("\n".join(history))
 
 # read words file into a set
 def read_words_file(fname):
