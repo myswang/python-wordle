@@ -10,7 +10,7 @@ STOP = "\033[0m"
 MAX_GUESSES = 6
 
 # evaluates the "correctness" of word against the answer.
-# returns True if they exactly match
+# returns the coloured matches of the word (green/yellow/grey)
 def evaluate(word):
     duplicates = {}
     score = [""] * len(word)
@@ -33,20 +33,13 @@ def evaluate(word):
         else:
             score[i] = f"{GREY_LETTER} {letter} "
     
-    history.append("".join(score) + STOP)
-    if word == answer:
-        return True
-    return False
+    return "".join(score) + STOP
 
 # clear the screen to begin drawing a new frame
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("python-wordle by Mike Wang")
     print("==========================")
-
-# print all guesses made
-def print_history():
-    print("\n".join(history))
 
 # read words file into a set
 def read_words_file(fname):
@@ -61,7 +54,7 @@ if __name__ == '__main__':
     words = read_words_file("sgb-words.txt")
         
     num_guesses = 1
-    history = []
+    history = ""
     valid_input = True
     # loop until we run out of guesses
     while num_guesses <= MAX_GUESSES:
@@ -70,13 +63,14 @@ if __name__ == '__main__':
         if not valid_input:
             info_str += " Invalid input."
         print(info_str)
-        print_history()
+        print(history)
         guess = input("Input: ")
         # check if word is valid
         if guess.lower() in words:
             valid_input = True
             # evaluate the guess (green/yellow/grey)
-            if evaluate(guess.upper()):
+            history += evaluate(guess.upper())
+            if guess.upper() == answer.upper():
                 break
             num_guesses += 1
         else:
@@ -87,5 +81,5 @@ if __name__ == '__main__':
         print(f"Game over! The answer was: {answer}")
     else:
         print(f"Congrats! You guessed it in {num_guesses} tries.")
-    print_history()
+    print(history)
 
